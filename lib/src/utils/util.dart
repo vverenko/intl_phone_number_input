@@ -10,6 +10,20 @@ class Utils {
         orElse: () => countries[0]);
   }
 
+  static String replaceArNumToEnNum(String? value) {
+    final arabicChars = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    StringBuffer sb = StringBuffer();
+    final strChars = value?.split('') ?? [];
+    final strLength = strChars.length;
+
+    for (int i = 0; i < strLength; i++) {
+      final ch = strChars[i];
+      final enCh = arabicChars.indexOf(ch);
+      sb.write(enCh == -1 ? ch : enCh);
+    }
+    return sb.toString();
+  }
+
   /// Returns a [String] which will be the unicode of a Flag Emoji,
   /// from a country [countryCode] passed as a parameter.
   static String generateFlagEmojiUnicode(String countryCode) {
